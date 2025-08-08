@@ -2,6 +2,19 @@ services:
   postgres:
     container_name: sportscape-postgres
     image: postgres
+  keycloak:
+    container_name: sportscape-keycloak
+    image: quay.io/keycloak/keycloak:25.0.0
+    command:
+      - start-dev
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+      - sportscape-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin

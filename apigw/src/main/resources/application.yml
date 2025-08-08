@@ -4,13 +4,11 @@ server:
 spring:
   application:
     name: api-gateway
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: user-service
-#          uri: lb://USER-SERVICE
-#          predicates:
-#            - Path = /api/users/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/sportscape-realm
   cloud:
     gateway:
       routes:
